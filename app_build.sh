@@ -17,6 +17,7 @@ set -e
 #         sdl
 #         wayland
 #         wayland-g2d
+#         rk3568          <-- RK3568优化配置
 #
 #   TOOLCHAIN_FILE:
 #       可选，传一个 CMake toolchain 文件路径（比如 user_cross_compile_setup.cmake）
@@ -32,6 +33,9 @@ set -e
 #
 #   交叉编译 + drm-egl-2d:
 #       ./app_build.sh drm-egl-2d user_cross_compile_setup.cmake
+#
+#   RK3568平台优化配置:
+#       ./app_build.sh rk3568 user_cross_compile_setup.cmake
 ########################################
 
 # 1) 读取参数
