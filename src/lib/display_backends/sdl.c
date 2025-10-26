@@ -43,6 +43,7 @@ extern simulator_settings_t settings;
  **********************/
 static void run_loop_sdl(void);
 static lv_display_t *init_sdl(void);
+static void init_sdl_indev(lv_display_t * disp);
 
 /**********************
  *  STATIC VARIABLES
@@ -97,7 +98,24 @@ static lv_display_t *init_sdl(void)
         return NULL;
     }
 
+    /* Initialize input devices after display is created */
+    init_sdl_indev(disp);
+
     return disp;
+}
+
+/**
+ * Initialize SDL input devices
+ * @param disp the display to associate input devices with
+ */
+static void init_sdl_indev(lv_display_t * disp)
+{
+    lv_sdl_mouse_create();
+    lv_indev_t * mousewheel = lv_sdl_mousewheel_create();
+    lv_indev_set_group(mousewheel, lv_group_get_default());
+
+    lv_indev_t * keyboard = lv_sdl_keyboard_create();
+    lv_indev_set_group(keyboard, lv_group_get_default());
 }
 
 /**
